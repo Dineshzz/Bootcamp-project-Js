@@ -1,0 +1,33 @@
+const express = require("express");
+const bodyParser = require("body-parser");
+const app = express();
+const port = 8080;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get("/", function (req, res) {
+  res.sendfile(__dirname + "/index.html");
+});
+
+app.post("/", function (req, res) {
+  Var age = Number(req.body.n1) / 15;
+
+  res.send("Your age in Dog years is : "+ age + " dog years");
+});
+
+app.listen(port);
+ 
+##<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Humans - Dog Age</title>
+  </head>
+  <body>
+    <h1>Check your age in Dog years</h1>
+    <form method="POST">
+      <input type="text" name="n1" />
+      <button type="submit" name="submit">See your age</button>
+    </form>
+  </body>
+</html>
